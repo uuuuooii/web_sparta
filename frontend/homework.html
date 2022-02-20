@@ -74,12 +74,35 @@
         }
 
     </style>
+    <script>
+        $(document).ready(function () {
+             $.ajax({
+            type: "GET",
+            url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
+            data: {},
+            success: function (response) {
+                let ondo  =response['temp']
+
+
+              $('#span').text(ondo)
+
+
+
+            }
+          })
+
+
+
+        });
+
+    </script>
 
 </head>
 
 <body>
 <div class="mytitle">
     <h1> 아이유 팬명록</h1>
+    <p>현재 기온 :<span id="span">00.0</span> 도 </p>
 </div>
 <div class="mypost">
     <div class="mb-3">
