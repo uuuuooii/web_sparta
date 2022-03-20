@@ -66,6 +66,8 @@
             margin-bottom: 10px;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-xss/0.3.3/xss.min.js"></script>
+
     <script>
         $(document).ready(function () {
             set_temp()
@@ -99,6 +101,15 @@
                 }
             })
         }
+        function XSSCheck(str, level) {
+            if (level == undefined || level == 0) {
+                str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g,"");
+            } else if (level != undefined && level == 1) {
+                str = str.replace(/\</g, "&lt;");
+                str = str.replace(/\>/g, "&gt;");
+            }
+            return str;
+        }
 
         function show_comment() {
             $('#comment-list').empty()
@@ -120,7 +131,7 @@
                                                     </blockquote>
                                                 </div>
                                             </div>`
-                        $('#comment-list').append(temp_html)
+                        $('#comment-list').append(XSSCheck(temp_html))
                     }
                 }
             });
